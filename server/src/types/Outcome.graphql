@@ -1,0 +1,25 @@
+type Outcome {
+  id: ID!
+  isShared: Boolean
+  name: String!
+  paymentDate: Int
+  paymentMethod: PaymentMethod!
+  value: Float!
+}
+
+input OutcomeInput {
+  isShared: Boolean
+  name: String!
+  paymentDate: Int
+  paymentMethod: PaymentMethod!
+  value: Float!
+}
+
+type Query {
+  outcome(id: ID!): Outcome
+  outcomes: [Outcome!]!
+}
+
+type Mutation {
+  createOutcome(input: OutcomeInput): Outcome
+}

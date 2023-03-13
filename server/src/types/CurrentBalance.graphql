@@ -1,0 +1,7 @@
+type CurrentBalance {
+  value: Float!
+}
+
+type Query {
+  currentBalance: CurrentBalance
+}

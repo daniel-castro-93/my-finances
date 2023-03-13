@@ -1,0 +1,30 @@
+enum PaymentMethod {
+  CASH
+  CREDIT_CARD
+}
+
+type Obligation {
+  id: ID!
+  isShared: Boolean
+  name: String!
+  paymentDate: Int
+  paymentMethod: PaymentMethod!
+  value: Float!
+}
+
+input ObligationInput {
+  isShared: Boolean
+  name: String!
+  paymentDate: Int
+  paymentMethod: PaymentMethod!
+  value: Float!
+}
+
+type Query {
+  obligation(id: ID!): Obligation
+  obligations: [Obligation!]!
+}
+
+type Mutation {
+  createObligation(input: ObligationInput!): Obligation
+}
