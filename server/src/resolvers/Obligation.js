@@ -1,7 +1,7 @@
 const Obligation = require("../models/Obligation");
 
 function obligation(root, { id }) {
-  return Obligation.getById(id);
+  return Obligation.find(id);
 }
 
 function obligations() {

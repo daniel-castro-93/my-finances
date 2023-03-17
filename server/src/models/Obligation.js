@@ -14,7 +14,7 @@ class Obligation {
     obligations.push({ id, ...props });
   }
 
-  static getById(id) {
+  static find(id) {
     return obligations[id];
   }
 

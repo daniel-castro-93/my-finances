@@ -5,10 +5,10 @@ const { graphqlHTTP } = require("express-graphql");
 const { createApplication } = require("graphql-modules");
 const CurrentBalanceModule = require("./modules/CurrentBalance");
 const ObligationModule = require("./modules/Obligation");
-const OutcomeModule = require("./modules/Outcome");
+const TransactionModule = require("./modules/Transaction");
  
 const application = createApplication({
-  modules: [CurrentBalanceModule, ObligationModule, OutcomeModule]
+  modules: [CurrentBalanceModule, ObligationModule, TransactionModule]
 })
  
 const app = express();

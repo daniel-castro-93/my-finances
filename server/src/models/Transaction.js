@@ -1,11 +1,11 @@
 const CurrentBalance = require("./CurrentBalance");
 
-const outcomes = [];
+const transactions = [];
 
-class Outcome {
+class Transaction {
   constructor(props) {
     const { isShared, name, obligationId, paymentDate, paymentMethod, value } = props;
-    const id = outcomes.length;
+    const id = transactions.length;
 
     this.id = id;
     this.isShared = isShared;
@@ -15,18 +15,16 @@ class Outcome {
     this.paymentMethod = paymentMethod;
     this.value = value;
 
-    outcomes.push({ id, ...props });
-    
-    if (paymentMethod === "CASH") CurrentBalance.update(value);
+    transactions.push({ id, ...props });
   }
 
   static getById(id) {
-    return outcomes[id];
+    return transactions[id];
   }
 
   static list() {
-    return outcomes;
+    return transactions;
   }
 }
 
-module.exports = Outcome;
+module.exports = Transaction;
