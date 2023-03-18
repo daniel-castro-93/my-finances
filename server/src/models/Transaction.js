@@ -1,25 +1,27 @@
-const CurrentBalance = require("./CurrentBalance");
-
 const transactions = [];
 
 class Transaction {
   constructor(props) {
-    const { isShared, name, obligationId, paymentDate, paymentMethod, value } = props;
-    const id = transactions.length;
-
-    this.id = id;
-    this.isShared = isShared;
-    this.name = name;
-    this.obligationId = obligationId
-    this.paymentDate = paymentDate;
-    this.paymentMethod = paymentMethod;
-    this.value = value;
-
-    transactions.push({ id, ...props });
+    this.id = props.id;
+    this.creditCardId = props.creditCardId;
+    this.isShared = props.isShared;
+    this.name = props.name;
+    this.obligationId = props.obligationId;
+    this.paymentDate = props.paymentDate;
+    this.value = props.value;
   }
 
-  static getById(id) {
-    return transactions[id];
+  static create(props) {
+    const id = transactions.length;
+    const propsWithId = { ...props, id };
+
+    transactions.push(propsWithId);
+
+    return new Transaction(propsWithId);
+  }
+
+  static find(id) {
+    return new Transaction(transactions[Number(id)]);
   }
 
   static list() {

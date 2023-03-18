@@ -9,7 +9,15 @@ function obligations() {
 }
 
 function createObligation(root, props) {
-  return new Obligation(props.input);
+  return Obligation.create(props.input);
+}
+
+function payObligation(root, props) {
+  const obligation = Obligation.find(props.input.id);
+
+  obligation.pay(props.input.value);
+
+  return obligation;
 }
 
 module.exports = {
@@ -18,6 +26,7 @@ module.exports = {
     obligations
   },
   Mutation: {
-    createObligation
+    createObligation,
+    payObligation
   }
 };

@@ -1,7 +1,7 @@
 const Transaction = require("../models/Transaction");
 
 function transaction(root, { id }) {
-  return Transaction.getById(id);
+  return Transaction.find(id);
 }
 
 function transactions() {
@@ -9,7 +9,7 @@ function transactions() {
 }
 
 function createTransaction(root, props) {
-  return new Transaction(props.input);
+  return Transaction.create(props.input);
 }
 
 module.exports = {

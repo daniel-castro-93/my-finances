@@ -1,17 +1,19 @@
 type Transaction {
   id: ID!
+  creditCardId: ID!
   isShared: Boolean
   name: String!
-  paymentDate: Int!
-  paymentMethod: PaymentMethod!
+  obligationId: ID!
+  paymentDate: Float!
   value: Float!
 }
 
 input TransactionInput {
+  creditCardId: ID!
   isShared: Boolean
   name: String!
-  paymentDate: Int!
-  paymentMethod: PaymentMethod!
+  obligationId: ID!
+  paymentDate: Float!
   value: Float!
 }
 

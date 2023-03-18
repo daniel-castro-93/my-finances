@@ -1,23 +1,23 @@
-enum PaymentMethod {
-  CASH
-  CREDIT_CARD
-}
-
 type Obligation {
   id: ID!
+  approximateValue: Float!
+  creditCardId: ID
   isShared: Boolean
   name: String!
-  paymentDate: Int
-  paymentMethod: PaymentMethod!
-  value: Float!
+  paymentDate: Float
 }
 
 input ObligationInput {
+  approximateValue: Float!
+  creditCardId: ID
   isShared: Boolean
   name: String!
-  paymentDate: Int
-  paymentMethod: PaymentMethod!
-  value: Float!
+  paymentDate: Float
+}
+
+input PayObligationInput {
+  id: ID!
+  value: Float
 }
 
 type Query {
@@ -27,4 +27,5 @@ type Query {
 
 type Mutation {
   createObligation(input: ObligationInput!): Obligation
+  payObligation(input: PayObligationInput!): Obligation
 }

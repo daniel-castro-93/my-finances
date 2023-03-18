@@ -3,12 +3,13 @@ require("graphql-import-node");
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const { createApplication } = require("graphql-modules");
+const CreditCardModule = require("./modules/CreditCard");
 const CurrentBalanceModule = require("./modules/CurrentBalance");
 const ObligationModule = require("./modules/Obligation");
 const TransactionModule = require("./modules/Transaction");
  
 const application = createApplication({
-  modules: [CurrentBalanceModule, ObligationModule, TransactionModule]
+  modules: [CreditCardModule, CurrentBalanceModule, ObligationModule, TransactionModule]
 })
  
 const app = express();

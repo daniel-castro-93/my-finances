@@ -1,25 +1,42 @@
+const Transaction = require("./Transaction");
+
 const obligations = [];
 
 class Obligation {
   constructor(props) {
-    const id = obligations.length;
-
-    this.id = id;
+    this.id = props.id;
+    this.approximateValue = props.approximateValue;
+    this.creditCardId = props.creditCardId;
     this.isShared = props.isShared;
     this.name = props.name;
     this.paymentDate = props.paymentDate;
-    this.paymentMethod = props.paymentMethod;
-    this.value = props.value;
+  }
 
-    obligations.push({ id, ...props });
+  static create(props) {
+    const id = obligations.length;
+    const propsWithId = { ...props, id };
+
+    obligations.push(propsWithId);
+
+    return new Obligation(propsWithId);
   }
 
   static find(id) {
-    return obligations[id];
+    return new Obligation(obligations[Number(id)]);
   }
 
   static list() {
     return obligations;
+  }
+
+  pay(newValue) {
+    const { creditCardId, isShared, name } = this;
+    const paymentDate = (new Date()).getTime();
+    const value = this.approximateValue || newValue;
+
+    Transaction.create({ creditCardId, isShared, name, obligationId: this.id, paymentDate, value });
+
+    return this;
   }
 }
 

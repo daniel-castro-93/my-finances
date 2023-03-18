@@ -1,0 +1,19 @@
+type CreditCard {
+  id: ID!
+  name: String!
+  number: String!
+}
+
+input CreditCardInput {
+  name: String!
+  number: String!
+}
+
+type Query {
+  creditCard(id: ID!): CreditCard
+  creditCards: [CreditCard!]!
+}
+
+type Mutation {
+  createCreditCard(input: CreditCardInput!): CreditCard
+}
