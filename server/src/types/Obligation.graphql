@@ -1,3 +1,8 @@
+enum PaymentMethod {
+  CASH
+  CREDIT_CARD
+}
+
 type Obligation {
   id: ID!
   approximateValue: Float!
@@ -5,6 +10,7 @@ type Obligation {
   isShared: Boolean
   name: String!
   paymentDate: Float
+  paymentMethod: PaymentMethod!
 }
 
 input ObligationInput {
@@ -13,6 +19,7 @@ input ObligationInput {
   isShared: Boolean
   name: String!
   paymentDate: Float
+  paymentMethod: PaymentMethod!
 }
 
 input PayObligationInput {

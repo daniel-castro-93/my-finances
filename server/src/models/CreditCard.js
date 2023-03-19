@@ -1,7 +1,10 @@
+const { createPayCreditCardObligation } = require("../utils");
+
 const creditCards = [];
 
 class CreditCard {
   constructor(props) {
+    this.id = props.id;
     this.name = props.name;
     this.number = props.number;
   }
@@ -9,10 +12,12 @@ class CreditCard {
   static create(props) {
     const id = creditCards.length;
     const propsWithId = { id, ...props };
+    const creditCard = new CreditCard(propsWithId);
 
     creditCards.push(propsWithId);
+    createPayCreditCardObligation(creditCard);
 
-    return new CreditCard(propsWithId);
+    return creditCard;
   }
 
   static find(id) {
