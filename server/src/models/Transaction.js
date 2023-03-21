@@ -1,3 +1,5 @@
+const _ = require("lodash");
+
 const transactions = [];
 
 class Transaction {
@@ -24,8 +26,14 @@ class Transaction {
     return new Transaction(transactions[Number(id)]);
   }
 
-  static list() {
-    return transactions;
+  static findBy(params) {
+    this.list(params)[0];
+  }
+
+  static list(params) {
+    if (!params) return transactions;
+
+    return _.filter(transactions, params);
   }
 }
 

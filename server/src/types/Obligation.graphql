@@ -11,6 +11,7 @@ type Obligation {
   name: String!
   paymentDate: Float
   paymentMethod: PaymentMethod!
+  value: Float!
 }
 
 input ObligationInput {

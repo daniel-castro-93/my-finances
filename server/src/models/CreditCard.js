@@ -1,4 +1,4 @@
-const { createPayCreditCardObligation } = require("../utils");
+const { createPayCreditCardObligation } = require("../utils/classes");
 
 const creditCards = [];
 

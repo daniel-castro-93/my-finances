@@ -1,4 +1,5 @@
 const Transaction = require("./Transaction");
+const { PAYMENT_METHODS } = require("../utils/constants");
 
 const obligations = [];
 
@@ -10,6 +11,8 @@ class Obligation {
     this.isShared = props.isShared;
     this.name = props.name;
     this.paymentDate = props.paymentDate;
+    this.paymentMethod = props.paymentMethod;
+    this.value = this.getCurrentValue();
   }
 
   static create(props) {
@@ -29,10 +32,23 @@ class Obligation {
     return obligations;
   }
 
+  getCurrentValue() {
+    if (this.paymentMethod === PAYMENT_METHODS.CASH && this.creditCardId) {
+      return 100;
+    }
+
+    // TODO: Date
+    const transaction = Transaction.findBy({ obligationId: this.id });
+    
+    return transaction?.value || this.approximateValue;
+  }
+
   pay(newValue) {
     const { creditCardId, isShared, name } = this;
     const paymentDate = (new Date()).getTime();
-    const value = this.approximateValue || newValue;
+    const value = newValue || this.approximateValue;
+
+    this.value = value;
 
     Transaction.create({ creditCardId, isShared, name, obligationId: this.id, paymentDate, value });
 
